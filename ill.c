@@ -1,6 +1,9 @@
+#include <stdio.h>
+#include <FreeImage.h>
+
 ILL_IMAGE data_image;
 
-ILL_IMAGE *illLoadImage(int lib_type, char *image_name) {
+ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 	switch(lib_type) {
 		case LIB_LODEPNG:
 			/* code */
