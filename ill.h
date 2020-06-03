@@ -10,6 +10,6 @@ typedef struct {
 	int height;
 } ILL_IMAGE;
 
-char *illLoadImage(int, char *);
+ILL_IMAGE illLoadImage(int, char *);
 
 #endif
