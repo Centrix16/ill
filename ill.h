@@ -5,7 +5,7 @@
 #define LIB_FREE_IMAGE 1
 
 typedef struct {
-	char data[BUFSIZ];
+	char* data;
 	int width;
 	int height;
 } ILL_IMAGE;
