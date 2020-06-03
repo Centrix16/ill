@@ -1,17 +1,23 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <lodepng.h>
 #include <FreeImage.h>
 #include "ill.h"
 
 ILL_IMAGE data_image;
 
 ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
-	FIBITMAP *image;
+	FIBITMAP *image = NULL;
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+	unsigned char *image = 0;
+	unsigned int err = 0, w = 0, h = 0;
 
 	switch(lib_type) {
 		case LIB_LODEPNG:
-			/* code */
-			break;
+			err = lodepng_decode32_file(&data_image.data, &data_image.width, &data_image.height, image_name);	
+			if (err)
+				data_image.data = NULL;
+		break;
 		case LIB_FREE_IMAGE:
 			fif = FreeImage_GetFileType(image_name, 0);
 			image = FreeImage_Load(fif, image_name, 0);
@@ -22,9 +28,13 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 
 			FreeImage_Unload(image);
 
-			break;
+		break;
 		default:
-			break;
+		break;
 	}
 	return data_image;
 }
+
+void illEnd(ILL_IMAGE *img) {
+	free(img);
+} 
