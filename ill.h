@@ -4,11 +4,11 @@
 #define LIB_LODEPNG 0
 #define LIB_FREE_IMAGE 1
 
-typedef struct ILL_IMAGE {
+typedef struct {
 	char data[BUFSIZ];
 	int width;
 	int height;
-};
+} ILL_IMAGE;
 
 char *illLoadImage(int, char *);
 
