@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <FreeImage.h>
+#include "ill.h"
 
 ILL_IMAGE data_image;
 
