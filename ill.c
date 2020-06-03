@@ -5,14 +5,14 @@
 ILL_IMAGE data_image;
 
 ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
+	FIBITMAP *image;
+	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+
 	switch(lib_type) {
 		case LIB_LODEPNG:
 			/* code */
 			break;
 		case LIB_FREE_IMAGE:
-			FIBITMAP *image;
-			FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-
 			fif = FreeImage_GetFileType(image_name, 0);
 			image = FreeImage_Load(fif, image_name, 0);
 
