@@ -30,6 +30,9 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 
 		break;
 		default:
+			data_image.data = NULL;
+			data_image.width = 0;
+			data_image.height = 0;
 		break;
 	}
 	return data_image;
