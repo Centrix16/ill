@@ -10,8 +10,7 @@ static char lib = LIB_LODEPNG;
 ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 	FIBITMAP *image = NULL;
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-	unsigned char *image = 0;
-	unsigned int err = 0, w = 0, h = 0;
+	unsigned int err = 0;
 
 	switch(lib_type) {
 		case LIB_LODEPNG:
@@ -43,13 +42,13 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 	return data_image;
 }
 
-void illEnd(ILL_IMAGE *img) {
+void illEnd(void *img) {
 	switch (lib) {	
 		case LIB_LODEPNG:
 			free(img);
 			break;			
 		case LIB_FREE_IMAGE:
-			FreeImage_Unload(img);
+			FreeImage_Unload((FIBITMAP *)img);
 			break;	
 	}
 } 
