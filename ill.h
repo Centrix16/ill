@@ -9,6 +9,7 @@ typedef struct {
 	char* data;
 	int width;
 	int height;
+	void *orig_ptr;
 } ILL_IMAGE;
 
 ILL_IMAGE illLoadImage(int, char *);
