@@ -49,7 +49,7 @@ void illEnd(ILL_IMAGE *img) {
 			free(img);
 			break;			
 		case LIB_FREE_IMAGE:
-			FreeImage_Unload(image);
+			FreeImage_Unload(img);
 			break;	
 	}
 } 
