@@ -25,7 +25,7 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 			fif = FreeImage_GetFileType(image_name, 0);
 			image = FreeImage_Load(fif, image_name, 0);
 
-			data_image.data = (char *)FreeImage_GetBits(image);
+			data_image.data = (unsigned char *)FreeImage_GetBits(image);
 			data_image.width = FreeImage_GetWidth(image);
 			data_image.height = FreeImage_GetHeight(image);
 			data_image.orig_ptr = image;
@@ -51,7 +51,7 @@ void illEnd(ILL_IMAGE img) {
 			free(img.data);
 			break;			
 		case LIB_FREE_IMAGE:
-			FreeImage_Unload((FIBITMAP)(img.orig_ptr));
+			FreeImage_Unload((FIBITMAP*)(img.orig_ptr));
 			break;	
 	}
 } 
