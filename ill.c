@@ -47,10 +47,9 @@ void illEnd(ILL_IMAGE *img) {
 	switch (lib) {	
 		case LIB_LODEPNG:
 			free(img);
-		break;			
-
+			break;			
 		case LIB_FREE_IMAGE:
 			FreeImage_Unload(image);
-		break;	
+			break;	
 	}
 } 
