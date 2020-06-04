@@ -6,9 +6,9 @@
 #define LIB_FREE_IMAGE 1
 
 typedef struct {
-	char* data;
-	int width;
-	int height;
+	unsigned char* data;
+	unsigned int width;
+	unsigned int height;
 	void *orig_ptr;
 } ILL_IMAGE;
 
