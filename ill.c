@@ -4,7 +4,7 @@
 #include <FreeImage.h>
 #include "ill.h"
 
-ILL_IMAGE data_image;
+static ILL_IMAGE data_image;
 static char lib = LIB_LODEPNG;
 
 ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
@@ -45,7 +45,7 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 	return data_image;
 }
 
-void illEnd(void *img) {
+void illEnd(ILL_IMAGE img) {
 	switch (lib) {	
 		case LIB_LODEPNG:
 			free(img.data);
