@@ -13,5 +13,6 @@ typedef struct {
 } ILL_IMAGE;
 
 ILL_IMAGE illLoadImage(int, char *);
+void illEnd(ILL_IMAGE);
 
 #endif
