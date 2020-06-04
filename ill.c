@@ -17,6 +17,7 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 			err = lodepng_decode32_file(&data_image.data, &data_image.width, &data_image.height, image_name);	
 			if (err)
 				data_image.data = NULL;
+			data_image.orig_ptr = NULL;
 			lib = LIB_LODEPNG;
 		break;
 
@@ -27,6 +28,7 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 			data_image.data = (char *)FreeImage_GetBits(image);
 			data_image.width = FreeImage_GetWidth(image);
 			data_image.height = FreeImage_GetHeight(image);
+			data_image.orig_ptr = image;
 
 			lib = LIB_FREE_IMAGE;
 		break;
@@ -35,6 +37,7 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 			data_image.data = NULL;
 			data_image.width = 0;
 			data_image.height = 0;
+			data_image.orig_ptr = NULL;
 
 			lib = LIB_NIL;
 		break;
@@ -45,10 +48,10 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 void illEnd(void *img) {
 	switch (lib) {	
 		case LIB_LODEPNG:
-			free(img);
+			free(img.data);
 			break;			
 		case LIB_FREE_IMAGE:
-			FreeImage_Unload((FIBITMAP *)img);
+			FreeImage_Unload((FIBITMAP)(img.orig_ptr));
 			break;	
 	}
 } 
