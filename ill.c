@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-// #include <lodepng.h>
+#include "../lodepng.h"
 #include <FreeImage.h>
 #include "ill.h"
 
@@ -14,7 +14,7 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 
 	switch(lib_type) {
 		case LIB_LODEPNG:
-//			err = lodepng_decode32_file(&data_image.data, &data_image.width, &data_image.height, image_name);	
+			err = lodepng_decode32_file(&data_image.data, &data_image.width, &data_image.height, image_name);	
 			if (err)
 				data_image.data = NULL;
 			data_image.orig_ptr = NULL;
@@ -48,7 +48,7 @@ ILL_IMAGE illLoadImage(int lib_type, char *image_name) {
 void illEnd(ILL_IMAGE img) {
 	switch (lib) {	
 		case LIB_LODEPNG:
-//			free(img.data);
+			free(img.data);
 			break;			
 		case LIB_FREE_IMAGE:
 			FreeImage_Unload((FIBITMAP*)(img.orig_ptr));
